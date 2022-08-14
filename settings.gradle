@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "projekat_rma_2019270833"
