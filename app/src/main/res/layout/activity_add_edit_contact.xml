@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
+    tools:context=".AddEditContact">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="5dp">
+
+    <!-- Inputi za text -->
+
+        <!-- Ime -->
+        <EditText
+            android:id="@+id/imeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ime"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_baseline_text_fields_24"
+            android:drawableLeft="@drawable/ic_baseline_text_fields_24"
+            android:drawablePadding="5dp"
+            android:textSize="14dp"
+            android:textColor="@color/colorTextSecondary"
+            />
+
+        <!-- Telefon -->
+        <EditText
+            android:id="@+id/telefonInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telefon"
+            android:inputType="phone"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:drawableLeft="@drawable/ic_baseline_phone_24"
+            android:drawablePadding="5dp"
+            android:textSize="14dp"
+            android:textColor="@color/colorTextSecondary"
+            />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="5dp"
+            android:textSize="14dp"
+            android:textColor="@color/colorTextSecondary"
+            />
+
+        <!-- Opis -->
+        <EditText
+            android:id="@+id/opisInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opis"
+            android:inputType="textLongMessage"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_baseline_note_24"
+            android:drawableLeft="@drawable/ic_baseline_note_24"
+            android:drawablePadding="5dp"
+            android:textSize="14dp"
+            android:textColor="@color/colorTextSecondary"
+            />
+    </LinearLayout>
+
+    <!-- dugme za dodavanje kontakta u bazu -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        app:tint="@color/white"
+        app:backgroundTint="@color/colorTextPrimary"
+        android:src="@drawable/ic_baseline_add_24"
+        android:elevation="5dp"
+        android:contentDescription="TODO" />
+
+</RelativeLayout>
