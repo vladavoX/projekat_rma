@@ -1,6 +1,7 @@
 package com.example.projekat_rma_2019270833;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +42,21 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         // setujemo data u view
         holder.kontaktIme.setText(ime);
 
-        // TODO: click listener
+        // click listener
         holder.kontaktPoziv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        // click listener kontakt detalji
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, KontakDetalji.class);
+                intent.putExtra("kontaktId", id);
+                context.startActivity(intent);
             }
         });
     }

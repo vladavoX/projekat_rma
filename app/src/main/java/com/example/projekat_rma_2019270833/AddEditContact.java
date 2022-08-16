@@ -67,25 +67,20 @@ public class AddEditContact extends AppCompatActivity {
         String vreme = ""+System.currentTimeMillis();
 
         // proveravamo podatke inputa
-        if(!ime.isEmpty() || !email.isEmpty() || !opis.isEmpty()){
-            if(!telefon.isEmpty()) {
-                // TODO: cuvamo ako postoji bar jedan podatak i broj telefona
-                long id = dbHelper.insertKontakt(
-                        ""+ime,
-                        ""+telefon,
-                        ""+email,
-                        ""+opis,
-                        ""+vreme,
-                        ""+vreme
+        if(!ime.isEmpty() && !telefon.isEmpty()){
+            // cuvamo ako postoji ime i broj telefona
+            long id = dbHelper.insertKontakt(
+                    ""+ime,
+                    ""+telefon,
+                    ""+email,
+                    ""+opis,
+                    ""+vreme,
+                    ""+vreme
 
-                );
-                Toast.makeText(getApplicationContext(), "Sacuvan kontakt: " + ime, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Unesite broj telefona...", Toast.LENGTH_SHORT).show();
-            }
+            );
+            Toast.makeText(getApplicationContext(), "Sacuvan kontakt: " + ime, Toast.LENGTH_SHORT).show();
         } else {
-            // greska
-            Toast.makeText(getApplicationContext(), "Nema podataka...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Unesite broj telefona i ime...", Toast.LENGTH_SHORT).show();
         }
     }
 

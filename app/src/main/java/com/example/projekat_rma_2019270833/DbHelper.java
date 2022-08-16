@@ -33,6 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(Kontakti.K_IME, ime);
         contentValues.put(Kontakti.K_TELEFON, telefon);
         contentValues.put(Kontakti.K_EMAIL, email);
