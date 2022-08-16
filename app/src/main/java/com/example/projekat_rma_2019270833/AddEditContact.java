@@ -15,18 +15,28 @@ public class AddEditContact extends AppCompatActivity {
     private EditText imeInput, telefonInput, emailInput, opisInput;
     private FloatingActionButton add_btn;
 
-    String ime, telefon, email, opis;
+    private String ime, telefon, email, opis;
 
     // Action bar
-    ActionBar actionBar;
+    private ActionBar actionBar;
+
+    // db helper
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_contact);
 
+        // init db
+        dbHelper = new DbHelper(this);
+
+        // init actionBar
         actionBar = getSupportActionBar();
+
+        // actionBar naslov
         actionBar.setTitle("Dodaj Kontakt");
+
         // dugme za nazad
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -53,10 +63,23 @@ public class AddEditContact extends AppCompatActivity {
         email = emailInput.getText().toString();
         opis = opisInput.getText().toString();
 
+        // dobavljamo trenutno vreme
+        String vreme = ""+System.currentTimeMillis();
+
         // proveravamo podatke inputa
         if(!ime.isEmpty() || !email.isEmpty() || !opis.isEmpty()){
             if(!telefon.isEmpty()) {
                 // TODO: cuvamo ako postoji bar jedan podatak i broj telefona
+                long id = dbHelper.insertKontakt(
+                        ""+ime,
+                        ""+telefon,
+                        ""+email,
+                        ""+opis,
+                        ""+vreme,
+                        ""+vreme
+
+                );
+                Toast.makeText(getApplicationContext(), "Sacuvan kontakt: " + ime, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Unesite broj telefona...", Toast.LENGTH_SHORT).show();
             }
