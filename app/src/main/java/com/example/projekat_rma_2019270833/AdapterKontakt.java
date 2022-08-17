@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,11 +39,16 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         // data
         String id = modelKontakt.getId();
         String ime = modelKontakt.getIme();
+        String telefon = modelKontakt.getTelefon();
+        String email = modelKontakt.getEmail();
+        String opis = modelKontakt.getOpis();
+        String vremeDodavanja = modelKontakt.getVremeDodavanja();
+        String vremeAzuriranja = modelKontakt.getVremeAzuriranja();
 
         // setujemo data u view
         holder.kontaktIme.setText(ime);
 
-        // click listener
+        // click listener za poziv (Ne radi)
         holder.kontaktPoziv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +65,36 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
                 context.startActivity(intent);
             }
         });
+
+        // click listener kontakt edit
+        holder.kontaktEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // intent za prelazak na edit
+                Intent intent = new Intent(context, AddEditContact.class);
+
+                // saljemo podatke kontakta sa trenutne pozicije
+                intent.putExtra("ID", id);
+                intent.putExtra("IME", ime);
+                intent.putExtra("TELEFON", telefon);
+                intent.putExtra("EMAIL", email);
+                intent.putExtra("OPIS", opis);
+                intent.putExtra("VREME_DODAVANJA", vremeDodavanja);
+                intent.putExtra("VREME_AZURIRANJA", vremeAzuriranja);
+
+                intent.putExtra("isAzuriranje", true);
+
+                context.startActivity(intent);
+            }
+        });
+
+        // click listener kontakt delete
+        holder.kontaktDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Test delete", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -68,7 +104,7 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
 
     class KontaktViewHanlder extends RecyclerView.ViewHolder {
 
-        ImageView kontaktPoziv;
+        ImageView kontaktPoziv, kontaktEdit, kontaktDelete;
         TextView kontaktIme;
 
         public KontaktViewHanlder(@NonNull View itemView) {
@@ -76,6 +112,8 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
 
             kontaktPoziv = itemView.findViewById(R.id.kontakt_poziv);
             kontaktIme = itemView.findViewById(R.id.kontakt_ime);
+            kontaktEdit = itemView.findViewById(R.id.kontakt_edit);
+            kontaktDelete = itemView.findViewById(R.id.kontakt_delete);
         }
     }
 }

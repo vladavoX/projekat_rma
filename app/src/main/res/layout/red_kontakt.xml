@@ -36,6 +36,30 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:id="@+id/kontakt_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@id/kontakt_delete"
+            android:layout_toLeftOf="@id/kontakt_delete"
+            android:contentDescription="edit"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:tint="@color/colorTextSecondary" />
+        <ImageView
+            android:id="@+id/kontakt_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@id/kontakt_poziv"
+            android:layout_toLeftOf="@id/kontakt_poziv"
+            android:contentDescription="delete"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:tint="@color/colorThemeExtra" />
+        <ImageView
             android:id="@+id/kontakt_poziv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

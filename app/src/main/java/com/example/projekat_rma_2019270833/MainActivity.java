@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // prelazak na drugi activity za dodavanje kontakta
                 Intent intent = new Intent(MainActivity.this,AddEditContact.class);
+                intent.putExtra("isAzuriranje", false);
                 startActivity(intent);
             }
         });

@@ -3,6 +3,7 @@ package com.example.projekat_rma_2019270833;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,7 +16,8 @@ public class AddEditContact extends AppCompatActivity {
     private EditText imeInput, telefonInput, emailInput, opisInput;
     private FloatingActionButton add_btn;
 
-    private String ime, telefon, email, opis;
+    private String id, ime, telefon, email, opis, vremeDodavanja, vremeAzuriranja;
+    private Boolean isAzuriranje;
 
     // Action bar
     private ActionBar actionBar;
@@ -34,9 +36,6 @@ public class AddEditContact extends AppCompatActivity {
         // init actionBar
         actionBar = getSupportActionBar();
 
-        // actionBar naslov
-        actionBar.setTitle("Dodaj Kontakt");
-
         // dugme za nazad
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -46,6 +45,31 @@ public class AddEditContact extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         opisInput = findViewById(R.id.opisInput);
         add_btn = findViewById(R.id.add_btn);
+
+        // dobavi intent data
+        Intent intent = getIntent();
+        isAzuriranje = intent.getBooleanExtra("isAzuriranje", false);
+
+        if (isAzuriranje){
+            actionBar.setTitle("Azuriraj Kontakt");
+
+            // uzimamo vrednosti intenta
+            id = intent.getStringExtra("ID");
+            ime = intent.getStringExtra("IME");
+            telefon = intent.getStringExtra("TELEFON");
+            email = intent.getStringExtra("EMAIL");
+            opis = intent.getStringExtra("OPIS");
+            vremeDodavanja = intent.getStringExtra("VREME_DODAVANJA");
+            vremeAzuriranja = intent.getStringExtra("VREME_AZURIRANJA");
+
+            // postavljamo primljene vrednosti
+            imeInput.setText(ime);
+            telefonInput.setText(telefon);
+            emailInput.setText(email);
+            opisInput.setText(opis);
+        } else {
+            actionBar.setTitle("Dodaj Kontakt");
+        }
 
         // click listener
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -67,18 +91,32 @@ public class AddEditContact extends AppCompatActivity {
         String vreme = ""+System.currentTimeMillis();
 
         // proveravamo podatke inputa
-        if(!ime.isEmpty() && !telefon.isEmpty()){
-            // cuvamo ako postoji ime i broj telefona
-            long id = dbHelper.insertKontakt(
+        if(!ime.isEmpty() && !telefon.isEmpty()) { // cuvamo ako postoji ime i broj telefona
+            // provera da li je edit ili create
+            if (!isAzuriranje) {
+                // kreiranje
+                long id = dbHelper.insertKontakt(
                     ""+ime,
                     ""+telefon,
                     ""+email,
                     ""+opis,
                     ""+vreme,
                     ""+vreme
-
-            );
-            Toast.makeText(getApplicationContext(), "Sacuvan kontakt: " + ime, Toast.LENGTH_SHORT).show();
+                );
+                Toast.makeText(getApplicationContext(), "Kreiranje uspesno...", Toast.LENGTH_SHORT).show();
+            } else {
+                // azuriranje
+                dbHelper.updateKontakt(
+                        ""+id,
+                        ""+ime,
+                        ""+telefon,
+                        ""+email,
+                        ""+opis,
+                        ""+vremeDodavanja,
+                        ""+vreme
+                );
+                Toast.makeText(getApplicationContext(), "Azuriranje uspesno...", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(getApplicationContext(), "Unesite broj telefona i ime...", Toast.LENGTH_SHORT).show();
         }

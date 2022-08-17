@@ -28,7 +28,7 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Insertujemo data u db
+    // Kreiramo kontakt u db
     public long insertKontakt(String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -48,7 +48,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    // Dobavljamo data iz db
+    // Dobavljamo kontakte iz db
     public ArrayList<ModelKontakt> getAll(){
         ArrayList<ModelKontakt> arrayList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + Kontakti.TABLE_NAME;
@@ -74,5 +74,23 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.close();
         return arrayList;
+    }
+
+    // Azuriramo kontakt u db
+    public void updateKontakt(String id, String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(Kontakti.K_IME, ime);
+        contentValues.put(Kontakti.K_TELEFON, telefon);
+        contentValues.put(Kontakti.K_EMAIL, email);
+        contentValues.put(Kontakti.K_OPIS, opis);
+        contentValues.put(Kontakti.K_VREME_DODAVANJA, vremeDodavanja);
+        contentValues.put(Kontakti.K_VREME_AZURIRANJA, vremeAzuriranja);
+
+        db.update(Kontakti.TABLE_NAME, contentValues, Kontakti.K_ID + " =? ", new String[]{id});
+
+        db.close();
     }
 }
