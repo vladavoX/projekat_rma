@@ -18,10 +18,12 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
 
     private Context context;
     private ArrayList<ModelKontakt> kontaktList;
+    private DbHelper dbHelper;
 
     public AdapterKontakt(Context context, ArrayList<ModelKontakt> kontaktList) {
         this.context = context;
         this.kontaktList = kontaktList;
+        dbHelper = new DbHelper(context);
     }
 
     @NonNull
@@ -92,7 +94,9 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         holder.kontaktDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Test delete", Toast.LENGTH_SHORT).show();
+                dbHelper.deleteKontakt(id);
+                // refreshujemo data pozivanje onResume iz MainActivity-a
+                ((MainActivity)context).onResume();
             }
         });
     }

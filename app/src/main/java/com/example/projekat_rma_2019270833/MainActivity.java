@@ -1,11 +1,14 @@
 package com.example.projekat_rma_2019270833;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -67,5 +70,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         loadData(); // refresh data
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.top_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        switch (item.getItemId()){
+            case R.id.deleteAll:
+                dbHelper.deleteAllKontakti();
+                onResume();
+                break;
+        }
+
+        return true;
     }
 }

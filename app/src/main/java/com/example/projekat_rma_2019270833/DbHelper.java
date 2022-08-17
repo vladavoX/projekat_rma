@@ -42,7 +42,6 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(Kontakti.K_VREME_AZURIRANJA, vremeAzuriranja);
 
         long id = db.insert(Kontakti.TABLE_NAME, null, contentValues);
-
         db.close();
 
         return id;
@@ -90,7 +89,22 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(Kontakti.K_VREME_AZURIRANJA, vremeAzuriranja);
 
         db.update(Kontakti.TABLE_NAME, contentValues, Kontakti.K_ID + " =? ", new String[]{id});
+        db.close();
+    }
 
+    // Brisemo kontakt
+    public void deleteKontakt(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(Kontakti.TABLE_NAME, Kontakti.K_ID + " =? ", new String[]{id});
+        db.close();
+    }
+
+    // Brisemo sve kontakte
+    public void deleteAllKontakti() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + Kontakti.TABLE_NAME);
         db.close();
     }
 }
