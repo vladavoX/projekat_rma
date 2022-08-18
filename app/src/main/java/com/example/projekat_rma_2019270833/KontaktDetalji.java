@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class KontakDetalji extends AppCompatActivity {
+public class KontaktDetalji extends AppCompatActivity {
 
     // Action bar
     private ActionBar actionBar;

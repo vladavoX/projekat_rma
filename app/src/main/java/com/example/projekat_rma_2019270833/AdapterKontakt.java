@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,7 +61,7 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, KontakDetalji.class);
+                Intent intent = new Intent(context, KontaktDetalji.class);
                 intent.putExtra("kontaktId", id);
                 context.startActivity(intent);
             }

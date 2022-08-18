@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSecondary"
-    tools:context=".KontakDetalji">
+    tools:context=".KontaktDetalji">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             >
             <TableRow>
                 <TextView
-                    android:text="Phone"
+                    android:text="Telefon"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"
