@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         kontaktRV.setHasFixedSize(true);
 
 
-        // Click listener
+        // Click listener add dugme
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

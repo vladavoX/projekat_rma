@@ -73,7 +73,7 @@ public class KontaktDetalji extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor.moveToNext()){
+        if (cursor.moveToFirst()){
             do {
                 // dobavljamo data
                 String ime = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_IME));

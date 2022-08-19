@@ -82,7 +82,7 @@
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="@string/v_d"
+                    android:text="@string/dodat"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"
@@ -100,7 +100,7 @@
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="@string/v_a"
+                    android:text="@string/azuriran"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"

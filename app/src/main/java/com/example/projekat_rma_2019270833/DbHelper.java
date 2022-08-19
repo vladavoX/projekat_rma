@@ -125,7 +125,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(searchQuery, null);
 
-        if (cursor.moveToNext()){
+        if (cursor.moveToFirst()){
             do {
                 ModelKontakt modelKontakt = new ModelKontakt(
                         "" + cursor.getInt(cursor.getColumnIndexOrThrow(Konstante.K_ID)),

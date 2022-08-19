@@ -129,6 +129,50 @@ public class AddEditKontakt extends AppCompatActivity {
         });
     }
 
+    private void saveData(){
+        // uzimamo inpute
+        ime = imeInput.getText().toString();
+        telefon = telefonInput.getText().toString();
+        email = emailInput.getText().toString();
+        opis = opisInput.getText().toString();
+
+        // dobavljamo trenutno vreme
+        String vreme = ""+System.currentTimeMillis();
+
+        // proveravamo podatke inputa
+        if(!ime.isEmpty() && !telefon.isEmpty()) { // cuvamo ako postoji ime i broj telefona
+            // provera da li je edit ili create
+            if (!isAzuriranje) {
+                // kreiranje
+                long id = dbHelper.insertKontakt(
+                        ""+slikaUri,
+                        ""+ime,
+                        ""+telefon,
+                        ""+email,
+                        ""+opis,
+                        ""+vreme,
+                        ""+vreme
+                );
+                Toast.makeText(getApplicationContext(), "Kreiranje uspesno...", Toast.LENGTH_SHORT).show();
+            } else {
+                // azuriranje
+                dbHelper.updateKontakt(
+                        ""+id,
+                        ""+slikaUri,
+                        ""+ime,
+                        ""+telefon,
+                        ""+email,
+                        ""+opis,
+                        ""+vremeDodavanja,
+                        ""+vreme
+                );
+                Toast.makeText(getApplicationContext(), "Azuriranje uspesno...", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Unesite broj telefona i ime...", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void showImagePickerDialog() {
         // opcije za odabir
         String[] opcije = {"Kamera", "Galerija"};
@@ -177,50 +221,6 @@ public class AddEditKontakt extends AppCompatActivity {
         startActivityForResult(cameraIntent, SLIKA_IZ_KAMERE_CODE);
     }
 
-    private void saveData(){
-        // uzimamo inpute
-        ime = imeInput.getText().toString();
-        telefon = telefonInput.getText().toString();
-        email = emailInput.getText().toString();
-        opis = opisInput.getText().toString();
-
-        // dobavljamo trenutno vreme
-        String vreme = ""+System.currentTimeMillis();
-
-        // proveravamo podatke inputa
-        if(!ime.isEmpty() && !telefon.isEmpty()) { // cuvamo ako postoji ime i broj telefona
-            // provera da li je edit ili create
-            if (!isAzuriranje) {
-                // kreiranje
-                long id = dbHelper.insertKontakt(
-                        ""+slikaUri,
-                        ""+ime,
-                        ""+telefon,
-                        ""+email,
-                        ""+opis,
-                        ""+vreme,
-                        ""+vreme
-                );
-                Toast.makeText(getApplicationContext(), "Kreiranje uspesno...", Toast.LENGTH_SHORT).show();
-            } else {
-                // azuriranje
-                dbHelper.updateKontakt(
-                        ""+id,
-                        ""+slikaUri,
-                        ""+ime,
-                        ""+telefon,
-                        ""+email,
-                        ""+opis,
-                        ""+vremeDodavanja,
-                        ""+vreme
-                );
-                Toast.makeText(getApplicationContext(), "Azuriranje uspesno...", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(getApplicationContext(), "Unesite broj telefona i ime...", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     // dugme za nazad klik
     @Override
     public boolean onSupportNavigateUp(){
@@ -261,7 +261,7 @@ public class AddEditKontakt extends AppCompatActivity {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean storageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
-                    // ako su obe permisije prihvacene return true
+                    // ako su obe permisije prihvacene
                     if (cameraAccepted && storageAccepted){
                         pickFromCamera();
                     } else {
