@@ -3,6 +3,7 @@ package com.example.projekat_rma_2019270833;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -41,6 +42,7 @@ public class KontaktDetalji extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         // actionBar naslov
+        assert actionBar != null;
         actionBar.setTitle("Kontakt");
 
         // dugme za nazad
@@ -66,21 +68,21 @@ public class KontaktDetalji extends AppCompatActivity {
 
     private void loadDataById() {
         // query za dobavljanje data po id-u
-        String selectQuery = "SELECT * FROM " + Kontakti.TABLE_NAME + " WHERE " + Kontakti.K_ID + " =\"" + id + "\"";
+        String selectQuery = "SELECT * FROM " + Konstante.TABLE_NAME + " WHERE " + Konstante.K_ID + " =\"" + id + "\"";
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToNext()){
             do {
                 // dobavljamo data
-                String ime = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_IME));
-                String slika = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_SLIKA));
-                String telefon = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_TELEFON));
-                String email = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_EMAIL));
-                String opis = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_OPIS));
-                String vremeDodavanja = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_VREME_DODAVANJA));
-                String vremeAzuriranja = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_VREME_AZURIRANJA));
+                String ime = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_IME));
+                String slika = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_SLIKA));
+                String telefon = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_TELEFON));
+                String email = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_EMAIL));
+                String opis = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_OPIS));
+                String vremeDodavanja = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_VREME_DODAVANJA));
+                String vremeAzuriranja = "" + cursor.getString(cursor.getColumnIndexOrThrow(Konstante.K_VREME_AZURIRANJA));
 
                 // konvretujemo vreme
                 Calendar calendar = Calendar.getInstance(Locale.getDefault());

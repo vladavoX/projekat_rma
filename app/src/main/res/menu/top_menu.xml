@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/searchKontakt"
-        android:title="Pretraga"
+        android:title="@string/pretraga"
         android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
     <item android:id="@+id/deleteAll"
-        android:title="ObrisiSve"
+        android:title="@string/obrisisve"
         android:icon="@drawable/ic_baseline_delete_sweep_24"
         app:showAsAction="always"/>
 </menu>

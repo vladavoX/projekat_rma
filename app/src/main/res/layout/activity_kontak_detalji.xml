@@ -10,19 +10,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
         <ImageView
             android:id="@+id/slikaTv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:contentDescription="@string/profilna_slika" />
         <TextView
             android:id="@+id/imeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Vladimir Aleksic"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTextPrimary"
             android:layout_gravity="center"
@@ -34,7 +36,7 @@
             android:layout_height="wrap_content"
             tools:text="Ovo je za mesto ostavljeno za opis Ovo je za mesto ostavljeno za opis"
             android:textColor="@color/colorTextSecondary"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:padding="10dp" />
         <TableLayout
             android:layout_width="match_parent"
@@ -44,15 +46,15 @@
             >
             <TableRow>
                 <TextView
-                    android:text="Telefon"
-                    android:textSize="18dp"
+                    android:text="@string/telefon"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"
                     />
                 <TextView
                     android:id="@+id/telefonTv"
                     tools:text="061 229 67 41"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginStart="10dp"
@@ -62,15 +64,15 @@
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="Email"
-                    android:textSize="18dp"
+                    android:text="@string/email"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"
                     />
                 <TextView
                     android:id="@+id/emailTv"
                     tools:text="v@email.com"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginStart="10dp"
@@ -80,15 +82,15 @@
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="V.D."
-                    android:textSize="18dp"
+                    android:text="@string/v_d"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"
                     />
                 <TextView
                     android:id="@+id/vremeDodavanjaTv"
                     tools:text="01.01.0001"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginStart="10dp"
@@ -98,15 +100,15 @@
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="V.A."
-                    android:textSize="18dp"
+                    android:text="@string/v_a"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"
                     />
                 <TextView
                     android:id="@+id/vremeAzuriranjaTv"
                     tools:text="02.02.0002"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginStart="10dp"

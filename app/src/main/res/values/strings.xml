@@ -1,3 +1,20 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">projekat_rma_2019270833</string>
+    <string name="slika_input">slika input</string>
+    <string name="ime">Ime</string>
+    <string name="opis">Opis</string>
+    <string name="dugme_add">dugme add</string>
+    <string name="profilna_slika">profilna slika</string>
+    <string name="telefon">Telefon</string>
+    <string name="email">Email</string>
+    <string name="v_d">V.D.</string>
+    <string name="v_a">V.A.</string>
+    <string name="dugme_za_prelazak_na_add">dugme za prelazak na add</string>
+    <string name="osoba">osoba</string>
+    <string name="ime_kontakta">Ime Kontakta</string>
+    <string name="edit">edit</string>
+    <string name="delete">delete</string>
+    <string name="telefon_slusalica">telefon slusalica</string>
+    <string name="pretraga">Pretraga</string>
+    <string name="obrisisve">ObrisiSve</string>
 </resources>

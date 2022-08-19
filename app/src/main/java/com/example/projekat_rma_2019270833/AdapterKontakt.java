@@ -31,8 +31,7 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
     @Override
     public KontaktViewHanlder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.red_kontakt, parent, false);
-        KontaktViewHanlder vh = new KontaktViewHanlder(view);
-        return vh;
+        return new KontaktViewHanlder(view);
     }
 
     @Override
@@ -114,7 +113,7 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         return kontaktList.size();
     }
 
-    class KontaktViewHanlder extends RecyclerView.ViewHolder {
+    static class KontaktViewHanlder extends RecyclerView.ViewHolder {
 
         ImageView kontaktSlika, kontaktPoziv, kontaktEdit, kontaktDelete;
         TextView kontaktIme;

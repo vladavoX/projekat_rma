@@ -3,22 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/colorSecondary"
     app:cardBackgroundColor="@color/colorSecondary"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorSecondary"
-        android:backgroundTint="@color/colorSecondary">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/kontakt_slika"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:contentDescription="osoba"
+            android:contentDescription="@string/osoba"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_person_24" />
 
@@ -31,7 +28,7 @@
             android:layout_toLeftOf="@id/kontakt_poziv"
             android:layout_toEndOf="@id/kontakt_slika"
             android:layout_toRightOf="@id/kontakt_slika"
-            android:text="Ime Kontakta"
+            android:text="@string/ime_kontakta"
             android:textColor="@color/colorTextPrimary"
             android:textSize="20sp" />
 
@@ -44,7 +41,7 @@
             android:layout_marginRight="10dp"
             android:layout_toStartOf="@id/kontakt_delete"
             android:layout_toLeftOf="@id/kontakt_delete"
-            android:contentDescription="edit"
+            android:contentDescription="@string/edit"
             android:src="@drawable/ic_baseline_edit_24"
             android:tint="@color/colorTextSecondary" />
         <ImageView
@@ -56,7 +53,7 @@
             android:layout_marginRight="10dp"
             android:layout_toStartOf="@id/kontakt_poziv"
             android:layout_toLeftOf="@id/kontakt_poziv"
-            android:contentDescription="delete"
+            android:contentDescription="@string/delete"
             android:src="@drawable/ic_baseline_delete_forever_24"
             android:tint="@color/colorThemeExtra" />
         <ImageView
@@ -68,7 +65,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:contentDescription="telefon"
+            android:contentDescription="@string/telefon_slusalica"
             android:src="@drawable/ic_baseline_phone_24"
             android:tint="@color/colorTextPrimary" />
 

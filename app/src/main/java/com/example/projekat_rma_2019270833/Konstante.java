@@ -1,6 +1,6 @@
 package com.example.projekat_rma_2019270833;
 
-public class Kontakti {
+public class Konstante {
 
     // database
     public static final String DATABASE_NAME = "KONTAKT_DB";

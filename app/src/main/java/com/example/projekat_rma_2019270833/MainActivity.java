@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         // actionBar naslov
+        assert actionBar != null;
         actionBar.setTitle("Kontakti");
 
         // inicijalizacija
@@ -108,11 +109,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
-        switch (item.getItemId()){
-            case R.id.deleteAll:
-                dbHelper.deleteAllKontakti();
-                onResume();
-                break;
+        if (item.getItemId() == R.id.deleteAll) {
+            dbHelper.deleteAllKontakti();
+            onResume();
         }
 
         return true;

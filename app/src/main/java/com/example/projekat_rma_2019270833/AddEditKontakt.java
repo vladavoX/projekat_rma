@@ -68,6 +68,7 @@ public class AddEditKontakt extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         // dugme za nazad
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
@@ -130,7 +131,7 @@ public class AddEditKontakt extends AppCompatActivity {
 
     private void showImagePickerDialog() {
         // opcije za odabir
-        String opcije[] = {"Camera", "Gallery"};
+        String[] opcije = {"Camera", "Gallery"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Izaberite Opciju");
@@ -242,9 +243,7 @@ public class AddEditKontakt extends AppCompatActivity {
 
     // provera permsije za storage
     private boolean checkStoragePermission(){
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-
-        return result1;
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
     }
 
     // zahtev za permisiju storage
@@ -292,6 +291,7 @@ public class AddEditKontakt extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             if (requestCode == SLIKA_IZ_GALERIJE_CODE) {
+                assert data != null;
                 Uri result = data.getData();
                 slikaInput.setImageURI(result);
             } else if (requestCode == SLIKA_IZ_KAMERE_CODE) {
