@@ -24,13 +24,13 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AddEditContact extends AppCompatActivity {
+public class AddEditKontakt extends AppCompatActivity {
 
     private ImageView slikaInput;
     private EditText imeInput, telefonInput, emailInput, opisInput;
     private FloatingActionButton add_btn;
 
-    private String id, ime, telefon, email, opis, vremeDodavanja, vremeAzuriranja;
+    private String id, slika, ime, telefon, email, opis, vremeDodavanja, vremeAzuriranja;
     private Boolean isAzuriranje;
 
     // Action bar
@@ -50,7 +50,7 @@ public class AddEditContact extends AppCompatActivity {
     private String[] storagePermission;
 
     // Slika Uri
-    Uri slikaUri;
+    private Uri slikaUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,7 @@ public class AddEditContact extends AppCompatActivity {
 
             // uzimamo vrednosti intenta
             id = intent.getStringExtra("ID");
+            slika = intent.getStringExtra("SLIKA");
             ime = intent.getStringExtra("IME");
             telefon = intent.getStringExtra("TELEFON");
             email = intent.getStringExtra("EMAIL");
@@ -99,6 +100,14 @@ public class AddEditContact extends AppCompatActivity {
             telefonInput.setText(telefon);
             emailInput.setText(email);
             opisInput.setText(opis);
+            slikaUri = Uri.parse(slika);
+
+            if (slika.equals("null")){
+                slikaInput.setImageResource(R.drawable.ic_baseline_person_24);
+            } else {
+                slikaInput.setImageURI(slikaUri);
+            }
+
         } else {
             actionBar.setTitle("Dodaj Kontakt");
         }
@@ -183,18 +192,20 @@ public class AddEditContact extends AppCompatActivity {
             if (!isAzuriranje) {
                 // kreiranje
                 long id = dbHelper.insertKontakt(
-                    ""+ime,
-                    ""+telefon,
-                    ""+email,
-                    ""+opis,
-                    ""+vreme,
-                    ""+vreme
+                        ""+slikaUri,
+                        ""+ime,
+                        ""+telefon,
+                        ""+email,
+                        ""+opis,
+                        ""+vreme,
+                        ""+vreme
                 );
                 Toast.makeText(getApplicationContext(), "Kreiranje uspesno...", Toast.LENGTH_SHORT).show();
             } else {
                 // azuriranje
                 dbHelper.updateKontakt(
                         ""+id,
+                        ""+slikaUri,
                         ""+ime,
                         ""+telefon,
                         ""+email,

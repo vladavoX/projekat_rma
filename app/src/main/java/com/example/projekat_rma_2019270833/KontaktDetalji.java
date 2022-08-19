@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -19,6 +21,7 @@ public class KontaktDetalji extends AppCompatActivity {
     private ActionBar actionBar;
 
     // view
+    private ImageView slikaTv;
     private TextView imeTv, telefonTv, emailTv, opisTv, vremeDodavanjaTv, vremeAzuriranjaTv;
 
     private String id;
@@ -49,6 +52,7 @@ public class KontaktDetalji extends AppCompatActivity {
         id = intent.getStringExtra("kontaktId");
 
         // init view
+        slikaTv = findViewById(R.id.slikaTv);
         imeTv = findViewById(R.id.imeTv);
         telefonTv = findViewById(R.id.telefonTv);
         emailTv = findViewById(R.id.emailTv);
@@ -71,6 +75,7 @@ public class KontaktDetalji extends AppCompatActivity {
             do {
                 // dobavljamo data
                 String ime = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_IME));
+                String slika = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_SLIKA));
                 String telefon = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_TELEFON));
                 String email = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_EMAIL));
                 String opis = "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_OPIS));
@@ -86,12 +91,19 @@ public class KontaktDetalji extends AppCompatActivity {
                 calendar.setTimeInMillis(Long.parseLong(vremeAzuriranja));
                 String azuVreme = "" + DateFormat.format("dd/MM/yy hh:mm:aa", calendar);
 
+                // setujemo data
                 imeTv.setText(ime);
                 telefonTv.setText(telefon);
                 emailTv.setText(email);
                 opisTv.setText(opis);
                 vremeDodavanjaTv.setText(dodVreme);
                 vremeAzuriranjaTv.setText(azuVreme);
+
+                if (slika.equals("null")) {
+                    slikaTv.setImageResource(R.drawable.ic_baseline_person_24);
+                } else {
+                    slikaTv.setImageURI(Uri.parse(slika));
+                }
 
             } while (cursor.moveToNext());
         }

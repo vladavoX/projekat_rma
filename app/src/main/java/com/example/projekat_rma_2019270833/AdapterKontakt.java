@@ -2,11 +2,13 @@ package com.example.projekat_rma_2019270833;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +41,7 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
 
         // data
         String id = modelKontakt.getId();
+        String slika = modelKontakt.getSlika();
         String ime = modelKontakt.getIme();
         String telefon = modelKontakt.getTelefon();
         String email = modelKontakt.getEmail();
@@ -48,12 +51,17 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
 
         // setujemo data u view
         holder.kontaktIme.setText(ime);
+        if (slika.equals("null")) {
+            holder.kontaktSlika.setImageResource(R.drawable.ic_baseline_person_24);
+        } else {
+            holder.kontaktSlika.setImageURI(Uri.parse(slika));
+        }
 
-        // click listener za poziv (Ne radi)
+        // click listener za poziv (Nema funkciju - samo izgled)
         holder.kontaktPoziv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(context, "Pozivam...", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,10 +80,11 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
             @Override
             public void onClick(View v) {
                 // intent za prelazak na edit
-                Intent intent = new Intent(context, AddEditContact.class);
+                Intent intent = new Intent(context, AddEditKontakt.class);
 
                 // saljemo podatke kontakta sa trenutne pozicije
                 intent.putExtra("ID", id);
+                intent.putExtra("SLIKA", slika);
                 intent.putExtra("IME", ime);
                 intent.putExtra("TELEFON", telefon);
                 intent.putExtra("EMAIL", email);
@@ -90,14 +99,14 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         });
 
         // click listener kontakt delete
-        holder.kontaktDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbHelper.deleteKontakt(id);
-                // refreshujemo data pozivanje onResume iz MainActivity-a
-                ((MainActivity)context).onResume();
-            }
-        });
+//        holder.kontaktDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dbHelper.deleteKontakt(id);
+//                // refreshujemo data pozivanje onResume iz MainActivity-a
+//                ((MainActivity)context).onResume();
+//            }
+//        });
     }
 
     @Override
@@ -107,12 +116,13 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
 
     class KontaktViewHanlder extends RecyclerView.ViewHolder {
 
-        ImageView kontaktPoziv, kontaktEdit, kontaktDelete;
+        ImageView kontaktSlika, kontaktPoziv, kontaktEdit, kontaktDelete;
         TextView kontaktIme;
 
         public KontaktViewHanlder(@NonNull View itemView) {
             super(itemView);
 
+            kontaktSlika = itemView.findViewById(R.id.kontakt_slika);
             kontaktPoziv = itemView.findViewById(R.id.kontakt_poziv);
             kontaktIme = itemView.findViewById(R.id.kontakt_ime);
             kontaktEdit = itemView.findViewById(R.id.kontakt_edit);

@@ -11,6 +11,7 @@ public class Kontakti {
 
     // kolone u tabeli
     public static final String K_ID = "ID";
+    public static final String K_SLIKA = "SLIKA";
     public static final String K_IME = "IME";
     public static final String K_TELEFON = "TELEFON";
     public static final String K_EMAIL = "EMAIL";
@@ -21,6 +22,7 @@ public class Kontakti {
     // query za kreiranje tabele
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "( "
             + K_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + K_SLIKA + " TEXT, "
             + K_IME + " TEXT, "
             + K_TELEFON + " TEXT, "
             + K_EMAIL + " TEXT, "

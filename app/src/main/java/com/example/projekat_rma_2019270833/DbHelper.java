@@ -29,11 +29,12 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     // Kreiramo kontakt u db
-    public long insertKontakt(String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja){
+    public long insertKontakt(String slika, String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
 
+        contentValues.put(Kontakti.K_SLIKA, slika);
         contentValues.put(Kontakti.K_IME, ime);
         contentValues.put(Kontakti.K_TELEFON, telefon);
         contentValues.put(Kontakti.K_EMAIL, email);
@@ -61,6 +62,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 ModelKontakt modelKontakt = new ModelKontakt(
                         "" + cursor.getInt(cursor.getColumnIndexOrThrow(Kontakti.K_ID)),
                         "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_IME)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_SLIKA)),
                         "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_TELEFON)),
                         "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_EMAIL)),
                         "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_OPIS)),
@@ -76,11 +78,12 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     // Azuriramo kontakt u db
-    public void updateKontakt(String id, String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja){
+    public void updateKontakt(String id, String slika, String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
 
+        contentValues.put(Kontakti.K_SLIKA, slika);
         contentValues.put(Kontakti.K_IME, ime);
         contentValues.put(Kontakti.K_TELEFON, telefon);
         contentValues.put(Kontakti.K_EMAIL, email);

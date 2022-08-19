@@ -2,11 +2,12 @@ package com.example.projekat_rma_2019270833;
 
 public class ModelKontakt {
 
-    private String id, ime, telefon, email, opis, vremeDodavanja, vremeAzuriranja;
+    private String id, ime, slika, telefon, email, opis, vremeDodavanja, vremeAzuriranja;
 
-    public ModelKontakt(String id, String ime, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja) {
+    public ModelKontakt(String id, String ime, String slika, String telefon, String email, String opis, String vremeDodavanja, String vremeAzuriranja) {
         this.id = id;
         this.ime = ime;
+        this.slika = slika;
         this.telefon = telefon;
         this.email = email;
         this.opis = opis;
@@ -28,6 +29,12 @@ public class ModelKontakt {
 
     public void setIme(String ime) {
         this.ime = ime;
+    }
+
+    public String getSlika() { return slika; }
+
+    public void setSlika(String slika) {
+        this.slika = slika;
     }
 
     public String getTelefon() {
