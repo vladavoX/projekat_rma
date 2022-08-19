@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -75,7 +76,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.top_menu, menu);
+
+        // search
+        MenuItem item = menu.findItem(R.id.searchKontakt);
+        // search area
+        SearchView searchView = (SearchView) item.getActionView();
+        // max vrednost sirine search-a
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchKontakt(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchKontakt(newText);
+                return false;
+            }
+        });
+
         return true;
+    }
+
+    private void searchKontakt(String query) {
+        adapterKontakt = new AdapterKontakt(this, dbHelper.getSearchKontakt(query));
+        kontaktRV.setAdapter(adapterKontakt);
     }
 
     @Override

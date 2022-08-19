@@ -110,4 +110,34 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + Kontakti.TABLE_NAME);
         db.close();
     }
+
+    // Search kontakta
+    public ArrayList<ModelKontakt> getSearchKontakt(String query) {
+        ArrayList<ModelKontakt> kontaktList = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        // query za search
+        String searchQuery = "SELECT * FROM " + Kontakti.TABLE_NAME + " WHERE " + Kontakti.K_IME + " LIKE '%" + query + "%'";
+
+        Cursor cursor = db.rawQuery(searchQuery, null);
+
+        if (cursor.moveToNext()){
+            do {
+                ModelKontakt modelKontakt = new ModelKontakt(
+                        "" + cursor.getInt(cursor.getColumnIndexOrThrow(Kontakti.K_ID)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_IME)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_SLIKA)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_TELEFON)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_EMAIL)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_OPIS)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_VREME_DODAVANJA)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Kontakti.K_VREME_AZURIRANJA))
+                );
+                kontaktList.add(modelKontakt);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return kontaktList;
+    }
 }
