@@ -56,11 +56,12 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
             holder.kontaktSlika.setImageURI(Uri.parse(slika));
         }
 
-        // click listener za poziv (Nema funkciju - samo izgled)
+        // click listener za poziv
         holder.kontaktPoziv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Pozivam...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", telefon, null));
+                context.startActivity(intent);
             }
         });
 
