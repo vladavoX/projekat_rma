@@ -16,13 +16,16 @@
 
     <!-- Inputi za text -->
         <!-- Slika -->
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/slikaInput"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_baseline_person_24"
             android:layout_gravity="center"
-            android:contentDescription="@string/slika_input" />
+            android:contentDescription="@string/slika_input"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FFFFFF"
+            />
 
         <!-- Ime -->
         <EditText
