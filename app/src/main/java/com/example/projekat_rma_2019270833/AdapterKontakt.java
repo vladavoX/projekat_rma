@@ -99,14 +99,14 @@ public class AdapterKontakt extends RecyclerView.Adapter<AdapterKontakt.KontaktV
         });
 
         // click listener kontakt delete
-//        holder.kontaktDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dbHelper.deleteKontakt(id);
-//                // refreshujemo data pozivanje onResume iz MainActivity-a
-//                ((MainActivity)context).onResume();
-//            }
-//        });
+        holder.kontaktDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.deleteKontakt(id);
+                // refreshujemo data pozivanje onResume iz MainActivity-a
+                ((MainActivity)context).onResume();
+            }
+        });
     }
 
     @Override
