@@ -50,9 +50,11 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     // Dobavljamo kontakte iz db
-    public ArrayList<ModelKontakt> getAll(){
+    public ArrayList<ModelKontakt> getAll(String orderBy){
         ArrayList<ModelKontakt> arrayList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + Konstante.TABLE_NAME;
+
+        // select query
+        String selectQuery = "SELECT * FROM " + Konstante.TABLE_NAME + " ORDER BY " + orderBy;
 
         SQLiteDatabase db = getReadableDatabase();
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, null);

@@ -6,8 +6,12 @@
         android:icon="@drawable/ic_baseline_search_24"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
+    <item android:id="@+id/sortKontakt"
+        android:title="@string/soritranje"
+        android:icon="@drawable/ic_baseline_sort_24"
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/deleteAll"
         android:title="@string/obrisisve"
         android:icon="@drawable/ic_baseline_delete_sweep_24"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 </menu>

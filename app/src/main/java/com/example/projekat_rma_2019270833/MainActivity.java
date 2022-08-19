@@ -2,9 +2,11 @@ package com.example.projekat_rma_2019270833;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
 
     // adapter
     private AdapterKontakt adapterKontakt;
+
+    // sort kategorija
+    private String sortByNewest = Konstante.K_VREME_DODAVANJA + " ASC";
+    private String sortByOldest = Konstante.K_VREME_DODAVANJA + " DESC";
+    private String sortByNameAsc = Konstante.K_IME + " ASC";
+    private String sortByNameDesc = Konstante.K_IME + " DESC";
+
+    // default sortiranje
+    private String currentSort = sortByNameAsc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,18 +71,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadData();
+        loadData(currentSort);
     }
 
-    private void loadData() {
-        adapterKontakt = new AdapterKontakt(this, dbHelper.getAll());
+    private void loadData(String currentSort) {
+        adapterKontakt = new AdapterKontakt(this, dbHelper.getAll(currentSort));
         kontaktRV.setAdapter(adapterKontakt);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        loadData(); // refresh data
+        loadData(currentSort); // refresh data
     }
 
     @Override
@@ -112,8 +123,32 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.deleteAll) {
             dbHelper.deleteAllKontakti();
             onResume();
+        } else if (item.getItemId() == R.id.sortKontakt) {
+            sortDialog();
         }
 
         return true;
+    }
+
+    private void sortDialog() {
+        String[] opcije = {"Najnoviji", "Najstariji", "Ime Rastuce", "Ime Opadajuce"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sortiraj po");
+        builder.setItems(opcije, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0){
+                    loadData(sortByNewest);
+                } else if (which == 1){
+                    loadData(sortByOldest);
+                } else if (which == 2){
+                    loadData(sortByNameAsc);
+                } else if (which == 3){
+                    loadData(sortByNameDesc);
+                }
+            }
+        });
+        builder.create().show();
     }
 }

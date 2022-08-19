@@ -131,7 +131,7 @@ public class AddEditKontakt extends AppCompatActivity {
 
     private void showImagePickerDialog() {
         // opcije za odabir
-        String[] opcije = {"Camera", "Gallery"};
+        String[] opcije = {"Kamera", "Galerija"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Izaberite Opciju");
