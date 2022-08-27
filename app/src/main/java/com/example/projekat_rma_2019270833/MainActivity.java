@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private AdapterKontakt adapterKontakt;
 
     // sort kategorija
-    private String sortByNewest = Konstante.K_VREME_DODAVANJA + " ASC";
-    private String sortByOldest = Konstante.K_VREME_DODAVANJA + " DESC";
+    private String sortByNewest = Konstante.K_VREME_DODAVANJA + " DESC";
+    private String sortByOldest = Konstante.K_VREME_DODAVANJA + " ASC";
     private String sortByNameAsc = Konstante.K_IME + " ASC";
     private String sortByNameDesc = Konstante.K_IME + " DESC";
 
